@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth
+spec:
+  selector:
+    app: auth
+  ports:
+    - name: http
+      port: 7987
+      targetPort: 7987
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+spec:
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: nrt.ocir.io/orasejapan/shukawam/auth
+          ports:
+            - containerPort: 7987
+      imagePullSecrets:
+        - name: ocir-cred
