@@ -29,5 +29,3 @@ spec:
           image: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
           ports:
             - containerPort: 7987
-      imagePullSecrets:
-        - name: ocir-cred
