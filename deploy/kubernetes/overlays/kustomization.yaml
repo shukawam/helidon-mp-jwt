@@ -7,5 +7,5 @@ resources:
 images:
 - name: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
   newName: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
-  newTag: 519de557ceef7f3ca743647f00fc4ecfa989f024
+  newTag: ced66755d6e264fe8c04f677ce25d65ad4b4d112
 namespace: ochacafe
