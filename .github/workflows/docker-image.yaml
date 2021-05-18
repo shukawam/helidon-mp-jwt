@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.OCI_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA -f ./auth/Dockerfile
+        run: docker build -t ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA ./auth/
 
       - name: Push the Docker image to OCIR
         run: docker push ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA
