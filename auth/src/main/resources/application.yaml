@@ -22,7 +22,7 @@ security:
     idcs-uri: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
     idcs-client-id: ae777aecc5bb4d83a511990c465238b3
     idcs-client-secret: cf0fa4fa-7073-434f-8cdf-eeb010a64641
-    frontend-uri: http://localhost:7987
+    frontend-uri: http://158.101.92.99:7987
     proxy-host:
   providers:
     - abac:
