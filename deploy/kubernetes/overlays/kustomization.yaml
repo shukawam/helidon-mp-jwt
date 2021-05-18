@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../base
+- ../../base
 
 images:
-  - name: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
-    newName: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
-    newTag: f0859735f72d143c3f10903c75b30dbcaa20c904
+- name: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
+  newName: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
+  newTag: ed327753e6ced8493f7db27b809522f79e3f2e9f
 namespace: ochacafe
