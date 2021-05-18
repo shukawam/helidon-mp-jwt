@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: nrt.ocir.io/orasejapan/shukawam/auth
+          image: nrt.ocir.io/orasejapan/shukawam/helidon-mp-jwt
           ports:
             - containerPort: 7987
       imagePullSecrets:
