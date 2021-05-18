@@ -31,8 +31,8 @@ public class OidcResource {
     @GET
     @Path("greet")
     @Authenticated
-//    @ScopeValidator.Scope("first_scope")
-//    @ScopeValidator.Scope("second_scope")
+    @ScopeValidator.Scope("first_scope")
+    @ScopeValidator.Scope("second_scope")
     @Produces(MediaType.APPLICATION_JSON)
     public JsonObject getDefaultMessage(@Context SecurityContext securityContext) {
         String msg = String.format("%s %s!", "Hello", securityContext.userName());

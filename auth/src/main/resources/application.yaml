@@ -32,6 +32,7 @@ security:
         client-secret: ${security.properties.idcs-client-secret}
         identity-uri: ${security.properties.idcs-uri}
         audience: https://ochacafe.season4/
+        scope-audience: https://ochacafe.season4
         proxy-host: ${security.properties.proxy-host}
         frontend-uri: ${security.properties.frontend-uri}
         server-type: idcs
