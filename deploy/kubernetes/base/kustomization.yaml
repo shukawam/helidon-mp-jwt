@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
   - auth.yaml
+  - employee.yaml
 
 namespace: ochacafe

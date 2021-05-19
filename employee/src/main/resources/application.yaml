@@ -1,0 +1,19 @@
+# Microprofile server properties
+server:
+  port: 8080
+  host: 0.0.0.0
+
+# Datasource properties
+javax:
+  sql:
+    DataSource:
+      postgreSQLDataSource:
+        driverClassName: org.h2.jdbcx.JdbcDataSource
+        jdbcUrl: dbc:h2:mem:test;DB_CLOSE_DELAY=-1
+        username: sa
+        password:
+
+# Change the following to true to enable the optional MicroProfile Metrics REST.request metrics
+metrics:
+  rest-request:
+    enabled: false
