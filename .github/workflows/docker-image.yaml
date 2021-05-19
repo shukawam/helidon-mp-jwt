@@ -20,10 +20,14 @@ jobs:
           password: ${{ secrets.OCI_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA ./auth/
+        run: |
+          docker build -t ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA ./auth/
+          docker build -t ${{secrets.OCIR_FULL_PATH_EMPLOYEE }}:$GITHUB_SHA ./employee/
 
       - name: Push the Docker image to OCIR
-        run: docker push ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA
+        run: |
+          docker push ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA
+          docker push ${{ secrets.OCIR_FULL_PATH_EMPLOYEE }}:$GITHUB_SHA
 
   deploy:
     name: deploy
@@ -43,6 +47,7 @@ jobs:
         run: |
           cd deploy/kubernetes/overlays
           kustomize edit set image ${{ secrets.OCIR_FULL_PATH }}=${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA
+          kustomize edit set image ${{ secrets.OCIR_FULL_PATH_EMPLOYEE }}=${{ secrets.OCIR_FULL_PATH_EMPLOYEE }}:$GITHUB_SHA
           cat kustomization.yaml
 
       - name: Commit files
