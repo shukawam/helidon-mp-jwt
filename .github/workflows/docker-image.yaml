@@ -21,13 +21,13 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build -t ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA ./auth/
           docker build -t ${{secrets.OCIR_FULL_PATH_EMPLOYEE }}:$GITHUB_SHA ./employee/
+          docker build -t ${{secrets.OCIR_FULL_PATH_API_GATEWAY }}:$GITHUB_SHA ./api-gateway/
 
       - name: Push the Docker image to OCIR
         run: |
-          docker push ${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA
           docker push ${{ secrets.OCIR_FULL_PATH_EMPLOYEE }}:$GITHUB_SHA
+          docker push ${{ secrets.OCIR_FULL_PATH_API_GATEWAY }}:$GITHUB_SHA
 
   deploy:
     name: deploy
@@ -46,8 +46,8 @@ jobs:
       - name: Update Kubernetes resources
         run: |
           cd deploy/kubernetes/overlays
-          kustomize edit set image ${{ secrets.OCIR_FULL_PATH }}=${{ secrets.OCIR_FULL_PATH }}:$GITHUB_SHA
           kustomize edit set image ${{ secrets.OCIR_FULL_PATH_EMPLOYEE }}=${{ secrets.OCIR_FULL_PATH_EMPLOYEE }}:$GITHUB_SHA
+          kustomize edit set image ${{ secrets.OCIR_FULL_PATH_API_GATEWAY }}=${{ secrets.OCIR_FULL_PATH_API_GATEWAY }}:$GITHUB_SHA
           cat kustomization.yaml
 
       - name: Commit files
