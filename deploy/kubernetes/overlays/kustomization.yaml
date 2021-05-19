@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../base
+- ../base
 
 images:
-  - name: nrt.ocir.io/orasejapan/shukawam/api-gateway
-    newName: nrt.ocir.io/orasejapan/shukawam/api-gateway
-    newTag: abdb787f88dfefb3f9c5331875f2ef39b3954204
-  - name: nrt.ocir.io/orasejapan/shukawam/employee
-    newName: nrt.ocir.io/orasejapan/shukawam/employee
-    newTag: abdb787f88dfefb3f9c5331875f2ef39b3954204
+- name: nrt.ocir.io/orasejapan/shukawam/api-gateway
+  newName: nrt.ocir.io/orasejapan/shukawam/api-gateway
+  newTag: 16449cbd5088955d9308ff73eeb61a33a0b5227e
+- name: nrt.ocir.io/orasejapan/shukawam/employee
+  newName: nrt.ocir.io/orasejapan/shukawam/employee
+  newTag: 16449cbd5088955d9308ff73eeb61a33a0b5227e
 namespace: ochacafe
