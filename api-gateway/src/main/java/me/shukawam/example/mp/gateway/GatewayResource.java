@@ -8,7 +8,6 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-@Path("/api")
 public class GatewayResource {
     @RestClient
     private final EmployeeResource employeeResource;
@@ -18,7 +17,7 @@ public class GatewayResource {
     }
 
     @GET
-    @Path("/employee/health")
+    @Path("employee/health")
     @Authenticated
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
