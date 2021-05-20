@@ -7,11 +7,12 @@ server:
 javax:
   sql:
     DataSource:
-      postgreSQLDataSource:
-        driverClassName: org.h2.jdbcx.JdbcDataSource
-        jdbcUrl: dbc:h2:mem:test;DB_CLOSE_DELAY=-1
-        username: sa
-        password:
+      H2DataSource:
+        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        dataSource:
+          url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+          user: sa
+          password:
 
 # Change the following to true to enable the optional MicroProfile Metrics REST.request metrics
 metrics:
