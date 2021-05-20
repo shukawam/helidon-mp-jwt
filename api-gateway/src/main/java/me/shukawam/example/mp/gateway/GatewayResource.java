@@ -1,5 +1,6 @@
 package me.shukawam.example.mp.gateway;
 
+import io.helidon.security.abac.role.RoleValidator;
 import io.helidon.security.abac.scope.ScopeValidator;
 import io.helidon.security.annotations.Authenticated;
 import me.shukawam.example.mp.gateway.rest.Employee;
@@ -7,8 +8,7 @@ import me.shukawam.example.mp.gateway.rest.EmployeeResource;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import java.util.List;
 
 @Path("api")
@@ -22,17 +22,54 @@ public class GatewayResource {
     }
 
     @GET
-    @Path("employee/health")
+    @Path("employee")
     @Authenticated
+    // A group defined in IDCS domain
+    @RoleValidator.Roles("guest")
+    // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
-    public Object employeeHealthCheck() {
-        return employeeResource.healthCheck();
-    }
-
-    @GET
-    @Path("employee")
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
+    }
+
+    @POST
+    @Path("employee")
+    @Authenticated
+    // A group defined in IDCS domain
+    @RoleValidator.Roles({"admin", "guest"})
+    // Scopes defined in IDCS in my scope audience
+    @ScopeValidator.Scope("first_scope")
+    @ScopeValidator.Scope("second_scope")
+    public Employee createEmployee(Employee employee) {
+        return employeeResource.createEmployee(employee);
+    }
+
+    @DELETE
+    @PathParam("employee/{id}")
+    @Authenticated
+    // A group defined in IDCS domain
+    @RoleValidator.Roles({"admin", "guest"})
+    // Scopes defined in IDCS in my scope audience
+    @ScopeValidator.Scope("first_scope")
+    @ScopeValidator.Scope("second_scope")
+    public void deleteEmployee(@PathParam("id") Integer id) {
+        employeeResource.deleteEmployee(id);
+    }
+
+    // Dummy roles in IDCS.
+    @GET
+    @Authenticated
+    @RoleValidator.Roles("tester")
+    public String dummyRoles() {
+        return "dummy roles.";
+    }
+
+    // Dummy scopes in IDCS.
+    @GET
+    @Authenticated
+    @ScopeValidator.Scope("third_scope")
+    public  String dummyScopes() {
+        return "dummy scopes.";
     }
 }

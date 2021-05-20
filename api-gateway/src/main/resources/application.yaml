@@ -33,3 +33,9 @@ security:
         frontend-uri: ${security.properties.frontend-uri}
         server-type: idcs
         cookie-same-site: Lax
+    - idcs-role-mapper:
+        multitenant: false
+        oidc-config:
+          client-id: ${security.properties.idcs-client-id}
+          client-secret: ${security.properties.idcs-client-secret}
+          identity-uri: ${security.properties.idcs-uri}

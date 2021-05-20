@@ -2,9 +2,8 @@ package me.shukawam.example.mp.employee;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -16,6 +15,23 @@ public class EmployeeResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Employee> getAllEmployee() {
-        return entityManager.createNativeQuery("getAllEmployee", Employee.class).getResultList();
+        return entityManager.createNamedQuery("getAllEmployee", Employee.class).getResultList();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Employee createEmployee(Employee employee) {
+        entityManager.persist(employee);
+        return entityManager.find(Employee.class, employee.getId());
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Transactional
+    public void deleteEmployee(@PathParam("id") Integer id) {
+        var employee = entityManager.find(Employee.class, id);
+        entityManager.remove(employee);
     }
 }
