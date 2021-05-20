@@ -38,56 +38,6 @@ class MainTest {
     }
 
     @Test
-    void testPokemonTypes() {
-        JsonArray types = client.target(serverUrl)
-                .path("type")
-                .request()
-                .get(JsonArray.class);
-        assertThat(types.size(), is(18));
-    }
-
-    @Test
-    void testPokemon() {
-        assertThat(getPokemonCount(), is(6));
-
-        Pokemon pokemon = client.target(serverUrl)
-                .path("pokemon/1")
-                .request()
-                .get(Pokemon.class);
-        assertThat(pokemon.getName(), is("Bulbasaur"));
-
-        pokemon = client.target(serverUrl)
-                .path("pokemon/name/Charmander")
-                .request()
-                .get(Pokemon.class);
-        assertThat(pokemon.getType(), is(10));
-
-        Response response = client.target(serverUrl)
-                .path("pokemon/1")
-                .request()
-                .get();
-        assertThat(response.getStatus(), is(200));
-
-        Pokemon test = new Pokemon();
-        test.setType(1);
-        test.setId(100);
-        test.setName("Test");
-        response = client.target(serverUrl)
-                .path("pokemon")
-                .request()
-                .post(Entity.entity(test, MediaType.APPLICATION_JSON));
-        assertThat(response.getStatus(), is(204));
-        assertThat(getPokemonCount(), is(7));
-
-        response = client.target(serverUrl)
-                .path("pokemon/100")
-                .request()
-                .delete();
-        assertThat(response.getStatus(), is(204));
-        assertThat(getPokemonCount(), is(6));
-    }
-
-    @Test
     void testHealthMetrics() {
         Response response = client.target(serverUrl)
                 .path("health")
