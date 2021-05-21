@@ -15,6 +15,7 @@ security:
   config.require-encryption: false
   properties:
     # Identity Provider - IDCS
+    # FIXME: getting from kubernetes config
     idcs-uri: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
     idcs-client-id: ae777aecc5bb4d83a511990c465238b3
     idcs-client-secret: cf0fa4fa-7073-434f-8cdf-eeb010a64641
@@ -33,9 +34,9 @@ security:
         frontend-uri: ${security.properties.frontend-uri}
         server-type: idcs
         cookie-same-site: Lax
-    - idcs-role-mapper:
-        multitenant: false
-        oidc-config:
-          client-id: ${security.properties.idcs-client-id}
-          client-secret: ${security.properties.idcs-client-secret}
-          identity-uri: ${security.properties.idcs-uri}
+#    - idcs-role-mapper:
+#        multitenant: false
+#        oidc-config:
+#          client-id: ${security.properties.idcs-client-id}
+#          client-secret: ${security.properties.idcs-client-secret}
+#          identity-uri: ${security.properties.idcs-uri}
