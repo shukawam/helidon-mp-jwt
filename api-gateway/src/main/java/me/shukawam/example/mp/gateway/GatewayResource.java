@@ -46,7 +46,7 @@ public class GatewayResource {
     }
 
     @DELETE
-    @PathParam("employee/{id}")
+    @Path("employee/{id}")
     @Authenticated
     // A group defined in IDCS domain
     @RoleValidator.Roles({"admin", "guest"})
@@ -59,6 +59,7 @@ public class GatewayResource {
 
     // Dummy roles in IDCS.
     @GET
+    @Path("role")
     @Authenticated
     @RoleValidator.Roles("tester")
     public String dummyRoles() {
@@ -67,6 +68,7 @@ public class GatewayResource {
 
     // Dummy scopes in IDCS.
     @GET
+    @Path("scope")
     @Authenticated
     @ScopeValidator.Scope("third_scope")
     public  String dummyScopes() {

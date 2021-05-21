@@ -28,4 +28,4 @@ spec:
         - name: employee
           image: nrt.ocir.io/orasejapan/shukawam/employee
           ports:
-            - containerPort: 7987
+            - containerPort: 8080
