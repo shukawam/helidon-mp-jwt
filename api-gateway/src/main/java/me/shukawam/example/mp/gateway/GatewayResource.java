@@ -7,6 +7,7 @@ import me.shukawam.example.mp.gateway.rest.Employee;
 import me.shukawam.example.mp.gateway.rest.EmployeeResource;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import java.util.List;
@@ -25,10 +26,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RoleValidator.Roles({"admin", "guest"})
-    // Scopes defined in IDCS in my scope audience
-    @ScopeValidator.Scope("first_scope")
-    @ScopeValidator.Scope("second_scope")
+    @RolesAllowed({"admin", "guest"})
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
     }
@@ -37,7 +35,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RoleValidator.Roles("admin")
+    @RolesAllowed("admin")
     // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
@@ -49,7 +47,7 @@ public class GatewayResource {
     @Path("employee/{id}")
     @Authenticated
     // A group defined in IDCS domain
-    @RoleValidator.Roles("admin")
+    @RolesAllowed("admin")
     // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
@@ -61,7 +59,7 @@ public class GatewayResource {
     @GET
     @Path("role")
     @Authenticated
-    @RoleValidator.Roles("tester") // not exist in IDCS
+    @RolesAllowed("tester") // not exist in IDCS
     public String dummyRoles() {
         return "dummy roles.";
     }
