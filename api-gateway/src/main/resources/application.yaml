@@ -39,13 +39,3 @@ security:
           client-id: ${security.properties.idcs-client-id}
           client-secret: ${security.properties.idcs-client-secret}
           identity-uri: ${security.properties.idcs-uri}
-  web-server:
-    paths:
-      - path: "/health[/{*}]"
-        roles-allowed: "admin"
-      - path: "/metrics[/{*}]"
-        roles-allowed: "admin"
-      - path: "/openapi[/{*}]"
-        roles-allowed: "admin"
-        abac:
-          scopes: ["first_scope", "second_scope"]
