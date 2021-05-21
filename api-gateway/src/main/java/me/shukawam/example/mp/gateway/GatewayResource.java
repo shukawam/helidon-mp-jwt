@@ -1,6 +1,5 @@
 package me.shukawam.example.mp.gateway;
 
-import io.helidon.security.abac.role.RoleValidator;
 import io.helidon.security.abac.scope.ScopeValidator;
 import io.helidon.security.annotations.Authenticated;
 import me.shukawam.example.mp.gateway.rest.Employee;
