@@ -22,15 +22,25 @@ public class GatewayResource {
         this.employeeResource = employeeResource;
     }
 
+    // only authentication
+    @GET
+    @Path("employee/{id}")
+    @Authenticated
+    public Employee getEmployeeById(@PathParam("id") Integer id) {
+        return employeeResource.getEmployeeById(id);
+    }
+
+    // authentication and authorization(rbac)
     @GET
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed({"admin", "guest"})
+    @RolesAllowed({ "admin", "guest" })
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
     }
 
+    // authentication and authorization(scope)
     @POST
     @Path("employee")
     @Authenticated
@@ -43,6 +53,7 @@ public class GatewayResource {
         return employeeResource.createEmployee(employee);
     }
 
+    // authentication and authorization(scope)
     @DELETE
     @Path("employee/{id}")
     @Authenticated
@@ -69,7 +80,7 @@ public class GatewayResource {
     @Path("scope")
     @Authenticated
     @ScopeValidator.Scope("third_scope") // not exist in IDCS
-    public  String dummyScopes() {
+    public String dummyScopes() {
         return "dummy scopes.";
     }
 }

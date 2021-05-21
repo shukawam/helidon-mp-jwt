@@ -13,6 +13,13 @@ public class EmployeeResource {
     private EntityManager entityManager;
 
     @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Employee getEmployeeById(@PathParam("id") Integer id) {
+        return entityManager.find(Employee.class, id);
+    }
+
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Employee> getAllEmployee() {
         return entityManager.createNamedQuery("getAllEmployee", Employee.class).getResultList();
