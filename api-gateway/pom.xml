@@ -35,11 +35,6 @@
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- Helidon MP - REST Client -->
-        <dependency>
-            <groupId>io.helidon.microprofile.rest-client</groupId>
-            <artifactId>helidon-microprofile-rest-client</artifactId>
-        </dependency>
         <!-- Helidon MP - Security -->
         <dependency>
             <groupId>io.helidon.microprofile</groupId>

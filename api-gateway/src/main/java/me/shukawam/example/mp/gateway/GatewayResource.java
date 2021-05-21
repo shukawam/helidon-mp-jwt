@@ -22,20 +22,20 @@ public class GatewayResource {
         this.employeeResource = employeeResource;
     }
 
-    // only authentication
+    // not authentication and authorization
     @GET
     @Path("employee/{id}")
-    @Authenticated
+    // @Authenticated
     public Employee getEmployeeById(@PathParam("id") Integer id) {
         return employeeResource.getEmployeeById(id);
     }
 
-    // authentication and authorization(rbac)
+    // only authentication
     @GET
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed({ "admin", "guest" })
+    // @RolesAllowed({ "admin", "guest" })
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
     }
@@ -45,7 +45,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed("admin")
+    // @RolesAllowed("admin")
     // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
@@ -60,8 +60,8 @@ public class GatewayResource {
     // A group defined in IDCS domain
     @RolesAllowed("admin")
     // Scopes defined in IDCS in my scope audience
-    @ScopeValidator.Scope("first_scope")
-    @ScopeValidator.Scope("second_scope")
+    // @ScopeValidator.Scope("first_scope")
+    // @ScopeValidator.Scope("second_scope")
     public void deleteEmployee(@PathParam("id") Integer id) {
         employeeResource.deleteEmployee(id);
     }
