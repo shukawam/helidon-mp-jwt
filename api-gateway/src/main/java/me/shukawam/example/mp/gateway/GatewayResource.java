@@ -25,7 +25,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RoleValidator.Roles("guest")
+    @RoleValidator.Roles({"admin", "guest"})
     // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
@@ -37,7 +37,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RoleValidator.Roles({"admin", "guest"})
+    @RoleValidator.Roles("admin")
     // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
@@ -49,7 +49,7 @@ public class GatewayResource {
     @Path("employee/{id}")
     @Authenticated
     // A group defined in IDCS domain
-    @RoleValidator.Roles({"admin", "guest"})
+    @RoleValidator.Roles("admin")
     // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
@@ -61,7 +61,7 @@ public class GatewayResource {
     @GET
     @Path("role")
     @Authenticated
-    @RoleValidator.Roles("tester")
+    @RoleValidator.Roles("tester") // not exist in IDCS
     public String dummyRoles() {
         return "dummy roles.";
     }
@@ -70,7 +70,7 @@ public class GatewayResource {
     @GET
     @Path("scope")
     @Authenticated
-    @ScopeValidator.Scope("third_scope")
+    @ScopeValidator.Scope("third_scope") // not exist in IDCS
     public  String dummyScopes() {
         return "dummy scopes.";
     }
