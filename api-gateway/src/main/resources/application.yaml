@@ -17,8 +17,8 @@ security:
     # Identity Provider - IDCS
     # FIXME: getting from kubernetes config
     idcs-uri: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
-    idcs-client-id: ae777aecc5bb4d83a511990c465238b3
-    idcs-client-secret: cf0fa4fa-7073-434f-8cdf-eeb010a64641
+    idcs-client-id: e5be4d01b55c4c60b288f1068a3f20bf
+    idcs-client-secret: 11218562-6203-4ad9-b138-bbd8254b3fc1
     frontend-uri: http://158.101.86.170:7987
     proxy-host:
   providers:
