@@ -28,8 +28,8 @@ security:
         client-id: ${security.properties.idcs-client-id}
         client-secret: ${security.properties.idcs-client-secret}
         identity-uri: ${security.properties.idcs-uri}
-        audience: https://ochacafe.season4/
-        scope-audience: https://ochacafe.season4
+        audience: http://158.101.86.170:7987/
+        scope-audience: http://158.101.86.170:7987
         proxy-host: ${security.properties.proxy-host}
         frontend-uri: ${security.properties.frontend-uri}
         server-type: idcs
