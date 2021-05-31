@@ -36,6 +36,7 @@ security:
         max-redirects: 2
         cookie-same-site: Lax
         cookie-name: "OIDC_SESSION"
+        header-use: true
     - idcs-role-mapper:
         multitenant: false
         oidc-config:
