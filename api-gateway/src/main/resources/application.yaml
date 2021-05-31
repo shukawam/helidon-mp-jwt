@@ -20,7 +20,6 @@ security:
     idcs-client-id: e5be4d01b55c4c60b288f1068a3f20bf
     idcs-client-secret: 11218562-6203-4ad9-b138-bbd8254b3fc1
     frontend-uri: http://158.101.86.170:7987
-    proxy-host:
   providers:
     - abac:
       # Adds ABAC provider - it does not require any configuration
@@ -30,14 +29,16 @@ security:
         identity-uri: ${security.properties.idcs-uri}
         audience: http://158.101.86.170:7987/
         scope-audience: http://158.101.86.170:7987
-        proxy-host: ${security.properties.proxy-host}
         frontend-uri: ${security.properties.frontend-uri}
         server-type: idcs
-        cookie-same-site: Lax
         base-scopes: openid
-#    - idcs-role-mapper:
-#        multitenant: false
-#        oidc-config:
-#          client-id: ${security.properties.idcs-client-id}
-#          client-secret: ${security.properties.idcs-client-secret}
-#          identity-uri: ${security.properties.idcs-uri}
+        redirect: true
+        max-redirects: 2
+        cookie-same-site: Lax
+        cookie-name: "OIDC_SESSION"
+    - idcs-role-mapper:
+        multitenant: false
+        oidc-config:
+          client-id: ${security.properties.idcs-client-id}
+          client-secret: ${security.properties.idcs-client-secret}
+          identity-uri: ${security.properties.idcs-uri}
