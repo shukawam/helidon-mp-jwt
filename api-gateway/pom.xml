@@ -38,10 +38,6 @@
         <!-- Helidon MP - Security -->
         <dependency>
             <groupId>io.helidon.microprofile</groupId>
-            <artifactId>helidon-microprofile-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.helidon.microprofile</groupId>
             <artifactId>helidon-microprofile-oidc</artifactId>
         </dependency>
         <dependency>

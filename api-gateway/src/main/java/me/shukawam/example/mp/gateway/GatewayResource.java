@@ -57,7 +57,7 @@ public class GatewayResource {
     @Path("employee/{id}")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed("admin")
+    @RolesAllowed("OCHaCafe")
     // Scopes defined in IDCS in my scope audience
     // @ScopeValidator.Scope("first_scope")
     // @ScopeValidator.Scope("second_scope")
