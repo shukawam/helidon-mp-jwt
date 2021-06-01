@@ -21,10 +21,9 @@ public class GatewayResource {
         this.employeeResource = employeeResource;
     }
 
-    // not authentication and authorization
     @GET
+    @Authenticated
     @Path("employee/{id}")
-    // @Authenticated
     public Employee getEmployeeById(@PathParam("id") Integer id) {
         return employeeResource.getEmployeeById(id);
     }
@@ -33,8 +32,7 @@ public class GatewayResource {
     @GET
     @Path("employee")
     @Authenticated
-    // A group defined in IDCS domain
-    // @RolesAllowed({ "admin", "guest" })
+    @RolesAllowed({ "admin", "guest" })
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
     }
@@ -56,11 +54,6 @@ public class GatewayResource {
     @DELETE
     @Path("employee/{id}")
     @Authenticated
-    // A group defined in IDCS domain
-    @RolesAllowed("OCHaCafe")
-    // Scopes defined in IDCS in my scope audience
-    // @ScopeValidator.Scope("first_scope")
-    // @ScopeValidator.Scope("second_scope")
     public void deleteEmployee(@PathParam("id") Integer id) {
         employeeResource.deleteEmployee(id);
     }

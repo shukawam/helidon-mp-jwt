@@ -9,7 +9,6 @@ import javax.ws.rs.Path;
 public class GreetResource {
 
     @GET
-    @Authenticated
     public String greet() {
         return "Hello world!!";
     }
