@@ -8,38 +8,35 @@ metrics:
   rest-request:
     enabled: false
 
-# Helidon MP Security Provider - OIDC
 # Security config
 security:
   # Set to true for production - if set to true, clear text passwords will cause failure
   config.require-encryption: false
   properties:
     # Identity Provider - IDCS
-    # FIXME: getting from kubernetes config
-    idcs-uri: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
-    idcs-client-id: e5be4d01b55c4c60b288f1068a3f20bf
-    idcs-client-secret: 11218562-6203-4ad9-b138-bbd8254b3fc1
-    frontend-uri: http://158.101.86.170:7987
+    idcs-uri: "https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com"
+    idcs-client-id: "e5be4d01b55c4c60b288f1068a3f20bf"
+    idcs-client-secret: "11218562-6203-4ad9-b138-bbd8254b3fc1"
+    frontend-uri: "http://158.101.86.170:7987"
   providers:
     - abac:
       # Adds ABAC provider - it does not require any configuration
     - oidc:
-        client-id: ${security.properties.idcs-client-id}
-        client-secret: ${security.properties.idcs-client-secret}
-        identity-uri: ${security.properties.idcs-uri}
-        audience: http://158.101.86.170:7987/
-        scope-audience: http://158.101.86.170:7987
-        frontend-uri: ${security.properties.frontend-uri}
-        server-type: idcs
-        base-scopes: openid
-        redirect: true
-        max-redirects: 2
-        cookie-same-site: Lax
-        cookie-name: "OIDC_SESSION"
-        header-use: true
+        client-id: "${security.properties.idcs-client-id}"
+        client-secret: "${security.properties.idcs-client-secret}"
+        identity-uri: "${security.properties.idcs-uri}"
+        # A prefix used for custom scopes
+        scope-audience: "http://158.101.86.170:7987"
+        frontend-uri: "${security.properties.frontend-uri}"
+        server-type: "idcs"
+        cookie-same-site: "Lax"
+        idcs-roles: true
     - idcs-role-mapper:
         multitenant: false
         oidc-config:
+          # we must repeat IDCS configuration, as in this case
+          # IDCS serves both as open ID connect authenticator and
+          # as a role mapper. Using minimal configuration here
           client-id: ${security.properties.idcs-client-id}
           client-secret: ${security.properties.idcs-client-secret}
           identity-uri: ${security.properties.idcs-uri}
