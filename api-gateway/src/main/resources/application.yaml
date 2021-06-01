@@ -29,7 +29,7 @@ security:
         scope-audience: "http://158.101.86.170:7987"
         frontend-uri: "${security.properties.frontend-uri}"
         server-type: "idcs"
-        cookie-same-site: "Lax"
+        header-use: true
         idcs-roles: true
     - idcs-role-mapper:
         multitenant: false
