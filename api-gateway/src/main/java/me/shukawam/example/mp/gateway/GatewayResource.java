@@ -28,25 +28,20 @@ public class GatewayResource {
         return employeeResource.getEmployeeById(id);
     }
 
-    // only authentication
     @GET
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed("admin")
+    @RolesAllowed({"admin", "guest"})
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
     }
 
-    // authentication and authorization(scope)
     @POST
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
     @RolesAllowed("admin")
-    // Scopes defined in IDCS in my scope audience
-    @ScopeValidator.Scope("first_scope")
-    @ScopeValidator.Scope("second_scope")
     public Employee createEmployee(Employee employee) {
         return employeeResource.createEmployee(employee);
     }
@@ -55,6 +50,8 @@ public class GatewayResource {
     @DELETE
     @Path("employee/{id}")
     @Authenticated
+    // A group defined in IDCS domain
+    @RolesAllowed("admin")
     public void deleteEmployee(@PathParam("id") Integer id) {
         employeeResource.deleteEmployee(id);
     }
@@ -63,7 +60,7 @@ public class GatewayResource {
     @GET
     @Path("role")
     @Authenticated
-    @RolesAllowed("tester") // not exist in IDCS
+    @RolesAllowed("tester") // Not exist in my IDCS
     public String dummyRoles() {
         return "dummy roles.";
     }
@@ -72,7 +69,7 @@ public class GatewayResource {
     @GET
     @Path("scope")
     @Authenticated
-    @ScopeValidator.Scope("third_scope") // not exist in IDCS
+    @ScopeValidator.Scope("dummy_scope") // not exist in IDCS
     public String dummyScopes() {
         return "dummy scopes.";
     }
