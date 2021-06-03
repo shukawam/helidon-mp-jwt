@@ -28,8 +28,8 @@ security:
         # A prefix used for custom scopes
         scope-audience: "http://158.101.86.170:7987"
         frontend-uri: "${security.properties.frontend-uri}"
+        audience: "${security.properties.idcs-uri}"
         server-type: "idcs"
-        header-use: true
         idcs-roles: true
     - idcs-role-mapper:
         multitenant: false

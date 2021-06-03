@@ -32,7 +32,8 @@ public class GatewayResource {
     @GET
     @Path("employee")
     @Authenticated
-    @RolesAllowed({ "admin", "guest" })
+    // A group defined in IDCS domain
+    @RolesAllowed("admin")
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
     }
@@ -42,7 +43,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    // @RolesAllowed("admin")
+    @RolesAllowed("admin")
     // Scopes defined in IDCS in my scope audience
     @ScopeValidator.Scope("first_scope")
     @ScopeValidator.Scope("second_scope")
