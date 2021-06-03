@@ -18,17 +18,19 @@ security:
     idcs-client-id: "e5be4d01b55c4c60b288f1068a3f20bf"
     idcs-client-secret: "11218562-6203-4ad9-b138-bbd8254b3fc1"
     frontend-uri: "http://158.101.86.170:7987"
+    proxy-host: ""
   providers:
     - abac:
-      # Adds ABAC provider - it does not require any configuration
+      # Adds ABAC Provider - it does not require any configuration
     - oidc:
         client-id: "${security.properties.idcs-client-id}"
         client-secret: "${security.properties.idcs-client-secret}"
         identity-uri: "${security.properties.idcs-uri}"
         # A prefix used for custom scopes
         scope-audience: "https://ochacafe.season4"
+        proxy-host: "${security.properties.proxy-host}"
         frontend-uri: "${security.properties.frontend-uri}"
-        audience: "${security.properties.idcs-uri}"
+        audience: "https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com:443"
         server-type: "idcs"
         idcs-roles: true
     - idcs-role-mapper:
@@ -37,6 +39,6 @@ security:
           # we must repeat IDCS configuration, as in this case
           # IDCS serves both as open ID connect authenticator and
           # as a role mapper. Using minimal configuration here
-          client-id: ${security.properties.idcs-client-id}
-          client-secret: ${security.properties.idcs-client-secret}
-          identity-uri: ${security.properties.idcs-uri}
+          client-id: "${security.properties.idcs-client-id}"
+          client-secret: "${security.properties.idcs-client-secret}"
+          identity-uri: "${security.properties.idcs-uri}"
