@@ -32,7 +32,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed({"admin", "guest"})
+    @RolesAllowed({"Admin", "Guest"})
     public List<Employee> getAllEmployee() {
         return employeeResource.getAllEmployee();
     }
@@ -41,7 +41,7 @@ public class GatewayResource {
     @Path("employee")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed("admin")
+    @RolesAllowed("Admin")
     public Employee createEmployee(Employee employee) {
         return employeeResource.createEmployee(employee);
     }
@@ -51,7 +51,7 @@ public class GatewayResource {
     @Path("employee/{id}")
     @Authenticated
     // A group defined in IDCS domain
-    @RolesAllowed("admin")
+    @RolesAllowed("Admin")
     public void deleteEmployee(@PathParam("id") Integer id) {
         employeeResource.deleteEmployee(id);
     }
@@ -60,7 +60,7 @@ public class GatewayResource {
     @GET
     @Path("role")
     @Authenticated
-    @RolesAllowed("tester") // Not exist in my IDCS
+    @RolesAllowed("Tester") // Not exist in my IDCS
     public String dummyRoles() {
         return "dummy roles.";
     }
