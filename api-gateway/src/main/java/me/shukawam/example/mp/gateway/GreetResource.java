@@ -60,9 +60,9 @@ public class GreetResource {
     @Authenticated
     @RolesAllowed({"Admin", "Guest"})
     @ScopeValidator.Scopes({
-            @ScopeValidator.Scope("first_scope"),
-            @ScopeValidator.Scope("second_scope"),
-            @ScopeValidator.Scope("basic_scope")
+            @ScopeValidator.Scope("first_scope"), // require approval
+            @ScopeValidator.Scope("second_scope"), // require approval
+            @ScopeValidator.Scope("basic_scope") // NOT require approval
     })
     public JsonObject hello6() {
         return defaultMessage();
