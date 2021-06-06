@@ -1,6 +1,5 @@
 package me.shukawam.example.mp.gateway;
 
-
 import io.helidon.security.abac.scope.ScopeValidator;
 import io.helidon.security.annotations.Authenticated;
 
@@ -26,7 +25,7 @@ public class GreetResource {
     @GET
     @Path("hello2")
     @Authenticated
-    @RolesAllowed({"Guest"})
+    @RolesAllowed({ "Guest" })
     public JsonObject hello2() {
         return defaultMessage();
     }
@@ -34,7 +33,7 @@ public class GreetResource {
     @GET
     @Path("hello3")
     @Authenticated
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({ "Admin" })
     public JsonObject hello3() {
         return defaultMessage();
     }
@@ -42,7 +41,7 @@ public class GreetResource {
     @GET
     @Path("hello4")
     @Authenticated
-    @RolesAllowed({"Admin", "Guest"})
+    @RolesAllowed({ "Admin", "Guest" })
     public JsonObject hello4() {
         return defaultMessage();
     }
@@ -50,7 +49,7 @@ public class GreetResource {
     @GET
     @Path("hello5")
     @Authenticated
-    @RolesAllowed({"Dummy"})
+    @RolesAllowed({ "Dummy" })
     public JsonObject hello5() {
         return defaultMessage();
     }
@@ -58,9 +57,8 @@ public class GreetResource {
     @GET
     @Path("hello6")
     @Authenticated
-    @RolesAllowed({"Admin", "Guest"})
-    @ScopeValidator.Scopes({
-            @ScopeValidator.Scope("first_scope"), // require approval
+    // @RolesAllowed({"Admin", "Guest"})
+    @ScopeValidator.Scopes({ @ScopeValidator.Scope("first_scope"), // require approval
             @ScopeValidator.Scope("second_scope"), // require approval
             @ScopeValidator.Scope("basic_scope") // NOT require approval
     })
@@ -71,17 +69,13 @@ public class GreetResource {
     @GET
     @Path("hello7")
     @Authenticated
-    @RolesAllowed({"Admin", "Guest"})
-    @ScopeValidator.Scopes({
-            @ScopeValidator.Scope("dummy_scope")
-    })
+    @RolesAllowed({ "Admin", "Guest" })
+    @ScopeValidator.Scopes({ @ScopeValidator.Scope("dummy_scope") })
     public JsonObject hello7() {
         return defaultMessage();
     }
 
     private JsonObject defaultMessage() {
-        return JSON.createObjectBuilder()
-                .add("message", "Hello world!!")
-                .build();
+        return JSON.createObjectBuilder().add("message", "Hello world!!").build();
     }
 }
