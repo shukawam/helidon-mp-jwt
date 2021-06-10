@@ -59,7 +59,17 @@
             <version>1.18.20</version>
             <scope>provided</scope>
         </dependency>
-        <!-- APM Tracing -->
+        <!-- MP - Tracing -->
+        <dependency>
+            <groupId>io.helidon.microprofile.tracing</groupId>
+            <artifactId>helidon-microprofile-tracing</artifactId>
+        </dependency>
+        <!-- OCI - APM -->
+        <dependency>
+            <groupId>com.oracle.apm.agent.java</groupId>
+            <artifactId>apm-java-agent-tracer</artifactId>
+            <version>RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>com.oracle.apm.agent.java</groupId>
             <artifactId>apm-java-agent-helidon</artifactId>
