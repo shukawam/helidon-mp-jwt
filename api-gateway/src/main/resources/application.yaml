@@ -42,3 +42,11 @@ security:
           client-id: "${security.properties.idcs-client-id}"
           client-secret: "${security.properties.idcs-client-secret}"
           identity-uri: "${security.properties.idcs-uri}"
+
+# Application Performance Monitoring Tracing
+tracing:
+  name: "Helidon APM Tracer"
+  service: "helidon-security"
+  private-data-key: "NDMCBGA6V3BJOKVFQC3SFDYQMX7SOZBP"
+  data-upload-endpoint: "https://aaaac6ptrolssaaaaaaaaaaewe.apm-agt.ap-tokyo-1.oci.oraclecloud.com"
+  log-directory: "/user/apm/log"
