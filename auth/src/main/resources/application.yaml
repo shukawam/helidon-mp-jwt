@@ -45,6 +45,7 @@ security:
 
 # Application Performance Monitoring Tracing
 tracing:
+  enabled: true
   name: "Helidon APM Tracer"
   service: "helidon-security"
   private-data-key: "NDMCBGA6V3BJOKVFQC3SFDYQMX7SOZBP"

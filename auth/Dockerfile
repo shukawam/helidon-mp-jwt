@@ -37,9 +37,9 @@ FROM openjdk:11-jre-slim
 WORKDIR /helidon
 
 # Copy the binary built in the 1st stage
-COPY --from=build /helidon/target/api-gateway.jar ./
+COPY --from=build /helidon/target/auth.jar ./
 COPY --from=build /helidon/target/libs ./libs
 
-CMD ["java", "-jar", "api-gateway.jar"]
+CMD ["java", "-jar", "auth.jar"]
 
 EXPOSE 7987
