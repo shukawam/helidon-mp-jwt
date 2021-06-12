@@ -32,11 +32,13 @@ spec:
           readinessProbe:
             httpGet:
               path: /health
-              port: api
+              port: http
           livenessProbe:
             httpGet:
               path: /health
-              port: api
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 3
           imagePullPolicy: Always
       imagePullSecrets:
         - name: auth-secret
