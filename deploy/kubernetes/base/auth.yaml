@@ -28,17 +28,20 @@ spec:
         - name: auth
           image: nrt.ocir.io/orasejapan/shukawam/auth
           ports:
-            - containerPort: 7987
+            - name: api
+              containerPort: 7987
           readinessProbe:
             httpGet:
               path: /health
-              port: http
+              port: api
+            initialDelaySeconds: 5
+            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /health
-              port: http
-            initialDelaySeconds: 3
-            periodSeconds: 3
+              port: api
+            initialDelaySeconds: 15
+            periodSeconds: 20
           imagePullPolicy: Always
       imagePullSecrets:
         - name: auth-secret
