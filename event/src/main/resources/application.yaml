@@ -1,0 +1,30 @@
+# Microprofile server properties
+server:
+  port: 8080
+  host: 0.0.0.0
+
+# Datasource properties
+javax:
+  sql:
+    DataSource:
+      AtpDataSource:
+        dataSourceClassName: oracle.jdbc.pool.OracleDataSource
+        dataSource:
+          url: jdbc:oracle:thin:@sandbox_high?TNS_ADMIN=C:/Work/05_oci/wallets/Wallet_SANDBOX
+          user: sandbox
+          password: Passw0rd12345
+        connectionTimeout: 5000
+
+# Change the following to true to enable the optional MicroProfile Metrics REST.request metrics
+metrics:
+  rest-request:
+    enabled: false
+
+# Application Performance Monitoring Tracing
+tracing:
+  enabled: true
+  name: "Helidon APM Tracer"
+  service: "helidon-event"
+  private-data-key: "NDMCBGA6V3BJOKVFQC3SFDYQMX7SOZBP"
+  data-upload-endpoint: "https://aaaac6ptrolssaaaaaaaaaaewe.apm-agt.ap-tokyo-1.oci.oraclecloud.com"
+  log-directory: "/user/apm/log"
