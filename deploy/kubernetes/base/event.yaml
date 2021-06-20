@@ -30,18 +30,21 @@ spec:
             - name: api
               containerPort: 8080
           env:
-            - name: JAVAX_SQL_DATASOURCE_ATPDATASOURCE_DATASOURCE_URL
-              value: a
-            - name: JAVAX_SQL_DATASOURCE_ATPDATASOURCE_DATASOURCE_USER
+            - name: javax.sql.datasource.atpdatasource.datasource_url
+              value: jdbc:oracle:thin:@sandbox_high?TNS_ADMIN=/database/credential
+            - name: javax.sql.datasource.atpdatasource.datasource.user
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: user
-            - name: JAVAX_SQL_DATASOURCE_ATPDATASOURCE_DATASOURCE_PASSWORD
+            - name: javax.sql.datasource.atpdatasource.datasource.password
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: password
+          volumeMounts:
+            - mountPath: /database/credential
+              name: credential
           readinessProbe:
             httpGet:
               path: /health
@@ -55,5 +58,9 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 20
           imagePullPolicy: Always
+      volumes:
+        - name: credential
+          configMap:
+            name: atp-wallet
       imagePullSecrets:
         - name: event-secret
