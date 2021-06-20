@@ -6,10 +6,9 @@ spec:
   selector:
     app: auth
   ports:
-    - name: http
-      port: 7987
+    - port: 7987
       targetPort: 7987
-  type: LoadBalancer
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
