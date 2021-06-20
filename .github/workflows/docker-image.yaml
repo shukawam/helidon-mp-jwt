@@ -22,10 +22,12 @@ jobs:
       - name: Build the Docker image
         run: |
           docker build -t nrt.ocir.io/orasejapan/shukawam/auth:$GITHUB_SHA ./auth
+          docker build -t nrt.ocir.io/orasejapan/shukawam/event:$GITHUB_SHA ./event
 
       - name: Push the Docker image to OCIR
         run: |
           docker push nrt.ocir.io/orasejapan/shukawam/auth:$GITHUB_SHA
+          docker push nrt.ocir.io/orasejapan/shukawam/event:$GITHUB_SHA
 
   deploy:
     name: deploy
@@ -45,12 +47,13 @@ jobs:
         run: |
           cd deploy/kubernetes/overlays
           kustomize edit set image nrt.ocir.io/orasejapan/shukawam/auth=nrt.ocir.io/orasejapan/shukawam/auth:$GITHUB_SHA
+          kustomize edit set image nrt.ocir.io/orasejapan/shukawam/event=nrt.ocir.io/orasejapan/shukawam/event:$GITHUB_SHA
           cat kustomization.yaml
 
       - name: Commit files
         run: |
-          git config --local user.email "s001.kawamura@gmail.com"
-          git config --local user.name "s001-kawamura"
+          git config --local user.email "shukawam@gmail.com"
+          git config --local user.name "shukawam"
           git commit -am "Bump docker tag"
 
       - name: Push changes
