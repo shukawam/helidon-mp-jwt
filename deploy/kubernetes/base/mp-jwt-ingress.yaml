@@ -19,6 +19,15 @@ spec:
   - http:
       paths:
       - backend:
+          service: 
+            name: auth
+            port:
+              number: 7987
+        path: "/oidc"
+        pathType: Prefix
+  - http:
+      paths:
+      - backend:
           service:
             name: event
             port: 
