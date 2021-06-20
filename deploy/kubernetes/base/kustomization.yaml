@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
   - auth.yaml
+  - event.yaml
+  - mandatory.yaml
   - mp-jwt-ingress.yaml
 
 namespace: ochacafe
