@@ -30,14 +30,14 @@ spec:
             - name: api
               containerPort: 8080
           env:
-            - name: javax.sql.datasource.AtpDataSource.datasource.url
+            - name: javax.sql.DataSource.AtpDataSource.dataSource.url
               value: jdbc:oracle:thin:@sandbox_high?TNS_ADMIN=/database/credential
-            - name: javax.sql.datasource.AtpDataSource.datasource.user
+            - name: javax.sql.DataSource.AtpDataSource.dataSource.user
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: user
-            - name: javax.sql.datasource.AtpDataSource.datasource.password
+            - name: javax.sql.DataSource.AtpDataSource.dataSource.password
               valueFrom:
                 secretKeyRef:
                   name: db-secret

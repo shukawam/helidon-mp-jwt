@@ -1,6 +1,6 @@
 # Microprofile server properties
 server:
-  port: 8080
+  port: 8081
   host: 0.0.0.0
 
 # Datasource properties
@@ -9,10 +9,11 @@ javax:
     DataSource:
       AtpDataSource:
         dataSourceClassName: oracle.jdbc.pool.OracleDataSource
-        datasource:
-          url: jdbc:oracle:thin:@sandbox_high?TNS_ADMIN=/database/credential
-          # user: sandbox
-          # password: Passw0rd12345
+        dataSource:
+          # local development use
+          url: jdbc:oracle:thin:@sandbox_high?TNS_ADMIN=C:/Work/05_oci/wallets/Wallet_SANDBOX
+          user: sandbox
+          password: Passw0rd12345
         connectionTimeout: 5000
 
 # Change the following to true to enable the optional MicroProfile Metrics REST.request metrics
