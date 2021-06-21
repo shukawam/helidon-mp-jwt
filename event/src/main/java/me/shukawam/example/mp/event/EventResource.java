@@ -25,7 +25,7 @@ public class EventResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Authenticated
-    @RolesAllowed({"Admin", "Guest"})
+    @RolesAllowed("Admin")
     public List<Event> getAllEvent() {
         return eventService.getAllEvent();
     }
@@ -34,7 +34,7 @@ public class EventResource {
     @Path("id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Authenticated
-    @RolesAllowed("Guest")
+    @RolesAllowed({"Admin", "Guest"})
     public Event getEventById(@PathParam("id") Integer id) {
         return eventService.getEventById(id);
     }
@@ -42,7 +42,7 @@ public class EventResource {
     @GET
     @Path("season/{season}")
     @Authenticated
-    @RolesAllowed("Guest")
+    @RolesAllowed({"Admin", "Guest"})
     public List<Event> getEventBySeason(@PathParam("season") String season) {
         return eventService.getEventBySeason(season);
     }
@@ -50,6 +50,7 @@ public class EventResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("Admin")
     public Event createEvent(CreateEventRequest createEventRequest) {
         return eventService.createEvent(createEventRequest);
     }
