@@ -1,18 +1,20 @@
 package me.shukawam.example.mp.event;
 
-import me.shukawam.example.mp.event.entity.Event;
+import io.helidon.security.annotations.Authenticated;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.json.Json;
+import javax.json.JsonBuilderFactory;
+import javax.json.JsonObject;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Collections;
 import java.util.List;
 
 @Path("event")
 public class EventResource {
-
+    private static final JsonBuilderFactory JSON = Json.createBuilderFactory(Collections.emptyMap());
     private final EventService eventService;
 
     @Inject
@@ -22,6 +24,8 @@ public class EventResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Authenticated
+    @RolesAllowed({"Admin", "Guest"})
     public List<Event> getAllEvent() {
         return eventService.getAllEvent();
     }
@@ -29,19 +33,33 @@ public class EventResource {
     @GET
     @Path("id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Authenticated
+    @RolesAllowed("Guest")
     public Event getEventById(@PathParam("id") Integer id) {
         return eventService.getEventById(id);
     }
 
     @GET
-    @Path("title/{title}")
-    public Event getEventByTitle(@PathParam("title") String title) {
-        return eventService.getEventByTitle(title);
-    }
-
-    @GET
     @Path("season/{season}")
+    @Authenticated
+    @RolesAllowed("Guest")
     public List<Event> getEventBySeason(@PathParam("season") String season) {
         return eventService.getEventBySeason(season);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Event createEvent(CreateEventRequest createEventRequest) {
+        return eventService.createEvent(createEventRequest);
+    }
+
+    @DELETE
+    @Path("id/{id}")
+    @Authenticated
+    @RolesAllowed("Admin")
+    public JsonObject deleteEvent(@PathParam("id") Integer id) {
+        eventService.deleteEvent(id);
+        return JSON.createObjectBuilder().add("message", String.format("Event: %s is deleted!", id)).build();
     }
 }

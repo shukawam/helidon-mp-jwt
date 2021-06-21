@@ -1,4 +1,4 @@
-package me.shukawam.example.mp.event.entity;
+package me.shukawam.example.mp.event;
 
 import lombok.Data;
 
@@ -10,7 +10,8 @@ import java.sql.Date;
 @NamedQueries({
         @NamedQuery(name = "getAllEvent", query = "select e from Event e"),
         @NamedQuery(name = "getEventByTitle", query = "select e from Event e where e.title like '%' || :title || '%'"),
-        @NamedQuery(name = "getEventBySeason", query = "select e from Event e where e.season = :season")
+        @NamedQuery(name = "getEventBySeason", query = "select e from Event e where e.season = :season"),
+        @NamedQuery(name = "getLatestEvent", query = "select e from Event e order by event_date desc")
 })
 @Data
 public class Event {
