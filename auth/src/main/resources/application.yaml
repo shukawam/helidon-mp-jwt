@@ -34,6 +34,8 @@ security:
         server-type: "idcs"
         idcs-roles: true
         propagate: true
+        cookie-use: false
+        header-use: true
     - idcs-role-mapper:
         multitenant: false
         oidc-config:
