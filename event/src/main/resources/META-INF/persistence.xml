@@ -15,6 +15,7 @@
       <property name="eclipselink.target-database" value="Oracle"/>
       <property name="eclipselink.target-server" value="io.helidon.integrations.cdi.eclipselink.CDISEPlatform"/>
       <property name="eclipselink.weaving" value="false"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
     </properties>
   </persistence-unit>
 </persistence>
