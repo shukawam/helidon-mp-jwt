@@ -1,6 +1,6 @@
 # OCHaCafe Season4 - #4 マイクロサービスの認証・認可と JWT
 
-[MicroProfile JWT RBAC](https://download.eclipse.org/microprofile/microprofile-jwt-auth-1.2/microprofile-jwt-auth-spec-1.2.html) を使用したマイクロサービスの認証・認可のデモのソースコードです・
+[MicroProfile JWT RBAC](https://download.eclipse.org/microprofile/microprofile-jwt-auth-1.2/microprofile-jwt-auth-spec-1.2.html) を使用したマイクロサービスの認証・認可のデモのソースコードです．
 
 ## デモ構成
 
@@ -86,7 +86,7 @@
                                     └── MainTest.java
 ```
 
-本サンプルアプリケーションは、 [Helidon - Security Provider(OidcProvider, IDCSRoleMapper)](https://oracle-japan-oss-docs.github.io/helidon/docs/v2/#/mp/security/02_providers#_idcs_role_mapper) を用いてマイクロサービスの認証・認可を実現しています・`auth/src/resources/application.yaml`, `event/src/resources/application.yaml`に当該機能の設定が記載されています・以下の部分を自身の環境に合わせて修正してください・(環境変数に設定することを推奨します)
+本サンプルアプリケーションは、 [Helidon - Security Provider(OidcProvider, IDCSRoleMapper)](https://oracle-japan-oss-docs.github.io/helidon/docs/v2/#/mp/security/02_providers#_idcs_role_mapper) を用いてマイクロサービスの認証・認可を実現しています．`auth/src/resources/application.yaml`, `event/src/resources/application.yaml`に当該機能の設定が記載されています．以下の部分を自身の環境に合わせて修正してください．(環境変数に設定することを推奨します)
 
 ```yaml
 # Security config
@@ -115,7 +115,7 @@ security:
 | POST /event                | Admin        |
 | DELETE /event/id/{id}      | Admin        |
 
-`http://<your-host>:<your-port>/auth/login`へアクセスし、認証情報を入力するとブラウザに OAuth 2.0 のアクセストークンが返却されるので、その取得したアクセストークンを用いて event サービスに対して API リクエストを行います・
+`http://<your-host>:<your-port>/auth/login`へアクセスし、認証情報を入力するとブラウザに OAuth 2.0 のアクセストークンが返却されるので、その取得したアクセストークンを用いて event サービスに対して API リクエストを行います．
 
 ### 例
 
