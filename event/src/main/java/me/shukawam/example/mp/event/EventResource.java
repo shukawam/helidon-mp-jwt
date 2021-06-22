@@ -50,6 +50,7 @@ public class EventResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Authenticated
     @RolesAllowed("Admin")
     public Event createEvent(CreateEventRequest createEventRequest) {
         return eventService.createEvent(createEventRequest);
