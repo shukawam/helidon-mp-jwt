@@ -42,6 +42,26 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: password
+            - name: security.properties.idcs-uri
+              valueFrom:
+                secretKeyRef:
+                  name: idcs-secret
+                  key: idcs-uri
+            - name: security.properties.idcs-client-id
+              valueFrom:
+                secretKeyRef:
+                  name: idcs-secret
+                  key: idcs-client-id
+            - name: security.properties.idcs-client-secret
+              valueFrom:
+                secretKeyRef:
+                  name: idcs-secret
+                  key: idcs-client-secret
+            - name: security.properties.frontend-uri
+              valueFrom:
+                secretKeyRef:
+                  name: idcs-secret
+                  key: frontend-uri
           volumeMounts:
             - mountPath: /database/credential
               name: credential
