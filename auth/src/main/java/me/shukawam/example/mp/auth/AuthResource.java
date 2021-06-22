@@ -1,11 +1,9 @@
-package me.shukawam.example.mp.gateway;
+package me.shukawam.example.mp.auth;
 
 import io.helidon.config.Config;
 import io.helidon.security.SecurityContext;
 import io.helidon.security.annotations.Authenticated;
-import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;

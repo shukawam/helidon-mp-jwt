@@ -1,5 +1,5 @@
 
-package me.shukawam.example.mp.gateway;
+package me.shukawam.example.mp.auth;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.spi.CDI;
