@@ -14,27 +14,26 @@ security:
   config.require-encryption: false
   properties:
     # Identity Provider - IDCS
-    idcs-uri: "https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com"
-    idcs-client-id: "e5be4d01b55c4c60b288f1068a3f20bf"
-    idcs-client-secret: "11218562-6203-4ad9-b138-bbd8254b3fc1"
-    frontend-uri: "http://138.3.214.195"
-    proxy-host: ""
+    idcs-uri: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
+    idcs-client-id: e5be4d01b55c4c60b288f1068a3f20bf
+    idcs-client-secret: 11218562-6203-4ad9-b138-bbd8254b3fc1
+    frontend-uri: http://138.3.214.195
+    proxy-host: 
   providers:
     - abac:
       # Adds ABAC Provider - it does not require any configuration
     - oidc:
-        client-id: "${security.properties.idcs-client-id}"
-        client-secret: "${security.properties.idcs-client-secret}"
-        identity-uri: "${security.properties.idcs-uri}"
+        client-id: ${security.properties.idcs-client-id}
+        client-secret: ${security.properties.idcs-client-secret}
+        identity-uri: ${security.properties.idcs-uri}
         # A prefix used for custom scopes
-        scope-audience: "https://ochacafe.season4"
-        proxy-host: "${security.properties.proxy-host}"
-        frontend-uri: "${security.properties.frontend-uri}"
-        audience: "https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com:443"
-        server-type: "idcs"
+        scope-audience: https://ochacafe.season4
+        proxy-host: ${security.properties.proxy-host}
+        frontend-uri: ${security.properties.frontend-uri}
+        audience: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com:443
+        server-type: idcs
         idcs-roles: true
-        propagate: true
-        cookie-use: false
+        # support for "Authorization" header with bearer token
         header-use: true
     - idcs-role-mapper:
         multitenant: false
@@ -42,15 +41,15 @@ security:
           # we must repeat IDCS configuration, as in this case
           # IDCS serves both as open ID connect authenticator and
           # as a role mapper. Using minimal configuration here
-          client-id: "${security.properties.idcs-client-id}"
-          client-secret: "${security.properties.idcs-client-secret}"
-          identity-uri: "${security.properties.idcs-uri}"
+          client-id: ${security.properties.idcs-client-id}
+          client-secret: ${security.properties.idcs-client-secret}
+          identity-uri: ${security.properties.idcs-uri}
 
 # Application Performance Monitoring Tracing
 tracing:
   enabled: true
-  name: "Helidon APM Tracer"
-  service: "helidon-security"
-  private-data-key: "NDMCBGA6V3BJOKVFQC3SFDYQMX7SOZBP"
-  data-upload-endpoint: "https://aaaac6ptrolssaaaaaaaaaaewe.apm-agt.ap-tokyo-1.oci.oraclecloud.com"
-  log-directory: "/user/apm/log"
+  name: Helidon APM Tracer
+  service: helidon-security
+  private-data-key: NDMCBGA6V3BJOKVFQC3SFDYQMX7SOZBP
+  data-upload-endpoint: https://aaaac6ptrolssaaaaaaaaaaewe.apm-agt.ap-tokyo-1.oci.oraclecloud.com
+  log-directory: /user/apm/log

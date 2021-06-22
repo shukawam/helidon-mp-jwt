@@ -41,6 +41,7 @@ security:
         audience: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com:443
         server-type: idcs
         idcs-roles: true
+        # support for "Authorization" header with bearer token
         header-use: true
     - idcs-role-mapper:
         multitenant: false
