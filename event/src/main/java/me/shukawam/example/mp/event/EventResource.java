@@ -25,7 +25,7 @@ public class EventResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Authenticated
-    @RolesAllowed("Admin")
+    @RolesAllowed({"Admin", "Guest"})
     public List<Event> getAllEvent() {
         return eventService.getAllEvent();
     }
