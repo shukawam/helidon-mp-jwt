@@ -7,8 +7,8 @@ resources:
 images:
 - name: nrt.ocir.io/orasejapan/shukawam/auth
   newName: nrt.ocir.io/orasejapan/shukawam/auth
-  newTag: 35d87ea63387cf82800fca6a1181ba1f9cea8e9e
+  newTag: 713b869a81b12714acab3fdf1c516f69fa6437dc
 - name: nrt.ocir.io/orasejapan/shukawam/event
   newName: nrt.ocir.io/orasejapan/shukawam/event
-  newTag: 35d87ea63387cf82800fca6a1181ba1f9cea8e9e
+  newTag: 713b869a81b12714acab3fdf1c516f69fa6437dc
 namespace: ochacafe
