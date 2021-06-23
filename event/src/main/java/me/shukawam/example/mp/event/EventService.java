@@ -1,5 +1,7 @@
 package me.shukawam.example.mp.event;
 
+import me.shukawam.example.mp.event.exception.EventNotFoundException;
+
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,7 +14,6 @@ import java.util.logging.Logger;
 
 @Dependent
 public class EventService {
-    private static final Logger LOGGER = Logger.getLogger(Event.class.getName());
     @PersistenceContext(unitName = "AtpDataSource")
     private EntityManager entityManager;
 
@@ -23,7 +24,7 @@ public class EventService {
     public Event getEventById(Integer id) {
         var event = entityManager.find(Event.class, id);
         if (event == null) {
-            // do something.
+            throw new EventNotFoundException("Event is NOT FOUND");
         }
         return event;
     }
@@ -33,7 +34,7 @@ public class EventService {
                 .setParameter("title", title)
                 .getSingleResult();
         if (event == null) {
-            // do something.
+            throw new EventNotFoundException("Event is NOT FOUND");
         }
         return event;
     }
@@ -55,7 +56,7 @@ public class EventService {
     public void deleteEvent(Integer id) {
         var event = entityManager.find(Event.class, id);
         if(event == null) {
-            throw new RuntimeException("Event is NOT found.");
+            throw new EventNotFoundException("Event is NOT FOUND");
         }
         entityManager.remove(event);
     }
@@ -64,11 +65,11 @@ public class EventService {
         var events = entityManager.createNamedQuery("getLatestEvent", Event.class)
                 .getResultList();
         if (events.isEmpty()) {
-            throw new RuntimeException("Event is NULL");
+            throw new EventNotFoundException("Event is NOT FOUND");
         }
         var latestEvent = events.get(0);
         if (latestEvent == null) {
-            throw new RuntimeException("Event is NULL");
+            throw new EventNotFoundException("Event is NOT FOUND");
         }
         try {
             var event = new Event();
@@ -79,6 +80,7 @@ public class EventService {
             event.setEventDate(new Date(new SimpleDateFormat("yyyy-mm-dd").parse(createEventRequest.getEventDate()).getTime()));
             return event;
         } catch (ParseException e) {
+            e.printStackTrace();
             throw new RuntimeException("Date format is wrong!");
         }
     }
