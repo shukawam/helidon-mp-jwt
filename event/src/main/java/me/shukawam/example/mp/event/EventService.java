@@ -10,12 +10,12 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Dependent
 public class EventService {
     @PersistenceContext(unitName = "AtpDataSource")
     private EntityManager entityManager;
+    private static final String DATE_FORMAT = "yyyy-MM-dd hh:mm:ss";
 
     public List<Event> getAllEvent() {
         return entityManager.createNamedQuery("getAllEvent", Event.class).getResultList();
@@ -77,7 +77,7 @@ public class EventService {
             event.setTitle(createEventRequest.getTitle());
             event.setSeason(createEventRequest.getSeason());
             event.setPresenter(createEventRequest.getPresenter());
-            event.setEventDate(new Date(new SimpleDateFormat("yyyy-mm-dd").parse(createEventRequest.getEventDate()).getTime()));
+            event.setEventDate(new Date(new SimpleDateFormat(DATE_FORMAT).parse(createEventRequest.getEventDate()).getTime()));
             return event;
         } catch (ParseException e) {
             e.printStackTrace();
