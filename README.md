@@ -122,7 +122,7 @@ security:
 リクエスト；
 
 ```bash
-curl --request GET --url http://<auth-host>:<auth-port>/event/id/215000 --header 'authorization: Bearer eyJ...'
+curl --request GET --url http://<event-host>:<event-port>/event/id/215000 --header 'authorization: Bearer eyJ...'
 ```
 
 レスポンス(Role: Guest)；
@@ -147,7 +147,7 @@ Connection: close
 リクエスト；
 
 ```bash
-curl --request POST --url http://<auth-host>:<auth-port>/event --header 'authorization: Bearer eyJ...' --header 'content-type: application/json' --data '{"title": "Kubernetesのオートスケーリング","season": "4","presenter": "n","eventDate": "2020-08-11"}'
+curl --request POST --url http://<event-host>:<event-port>/event --header 'authorization: Bearer eyJ...' --header 'content-type: application/json' --data '{"title": "Kubernetesのオートスケーリング","season": "4","presenter": "n","eventDate": "2020-08-11"}'
 ```
 
 レスポンス(Role: Guest)；
