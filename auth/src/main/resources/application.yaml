@@ -31,7 +31,7 @@ security:
         scope-audience: https://ochacafe.season4
         proxy-host: ${security.properties.proxy-host}
         frontend-uri: ${security.properties.frontend-uri}
-        audience: ${security.properties.idcs-client-id}
+        audience: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com:443
         server-type: idcs
         idcs-roles: true
         # support for "Authorization" header with bearer token
