@@ -3,7 +3,9 @@ package me.shukawam.example.mp.auth;
 import io.helidon.config.Config;
 import io.helidon.security.SecurityContext;
 import io.helidon.security.annotations.Authenticated;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
+import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class AuthResource {
     private static final JsonBuilderFactory JSON = Json.createBuilderFactory(Collections.emptyMap());
     private final String cookieName;
+    @Inject
+    private JsonWebToken jwt;
 
     public AuthResource() {
         Config config = Config.create();
@@ -33,6 +37,15 @@ public class AuthResource {
     public JsonObject login(@Context SecurityContext securityContext, @Context ContainerRequestContext containerRequestContext) {
         return JSON.createObjectBuilder().add("access_token", getAccessToken(containerRequestContext))
                 .build();
+    }
+
+    @GET
+    @Path("jwt")
+    @Authenticated
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject getJsonWebToken() {
+        var rawToken = jwt.getRawToken();
+        return JSON.createObjectBuilder().add("rowToken", rawToken).build();
     }
 
     private String getAccessToken(ContainerRequestContext containerRequestContext) {
