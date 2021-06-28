@@ -46,11 +46,11 @@ public class AuthResource {
     @Path("jaxrs")
     @Authenticated
     @Produces(MediaType.APPLICATION_JSON)
-    public Principal getJsonWebToken(@Context javax.ws.rs.core.SecurityContext securityContext) {
-        if(securityContext.getUserPrincipal() == null) {
+    public Principal getJsonWebToken(@Context SecurityContext securityContext) {
+        if(securityContext.userPrincipal().isPresent() == false) {
             // do something.
         }
-        return securityContext.getUserPrincipal();
+        return securityContext.userPrincipal().get();
     }
 
     private String getAccessToken(ContainerRequestContext containerRequestContext) {
