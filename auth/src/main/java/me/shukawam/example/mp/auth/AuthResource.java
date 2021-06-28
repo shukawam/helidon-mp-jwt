@@ -5,6 +5,7 @@ import io.helidon.security.SecurityContext;
 import io.helidon.security.annotations.Authenticated;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonBuilderFactory;
@@ -19,6 +20,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 @Path("auth")
+@ApplicationScoped
 public class AuthResource {
     private static final JsonBuilderFactory JSON = Json.createBuilderFactory(Collections.emptyMap());
     private final String cookieName;
