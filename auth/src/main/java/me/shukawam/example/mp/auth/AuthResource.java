@@ -16,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.security.Principal;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -42,12 +43,14 @@ public class AuthResource {
     }
 
     @GET
-    @Path("jwt")
+    @Path("jaxrs")
     @Authenticated
     @Produces(MediaType.APPLICATION_JSON)
-    public JsonObject getJsonWebToken() {
-        var rawToken = jwt.getRawToken();
-        return JSON.createObjectBuilder().add("rowToken", rawToken).build();
+    public Principal getJsonWebToken(@Context javax.ws.rs.core.SecurityContext securityContext) {
+        if(securityContext.getUserPrincipal() == null) {
+            // do something.
+        }
+        return securityContext.getUserPrincipal();
     }
 
     private String getAccessToken(ContainerRequestContext containerRequestContext) {
